@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="asr_topic" default="/asr" description="Name of the ASR topic where recognized speech will be published"/>
+    <arg name="language_topic" default="/language" description="Name of the language topic where the current recognized language is published"/>
+    <arg name="azure_speech_key" default="" description="Azure Speech Service Key"/>
+    <arg name="azure_speech_region" default="" description="Azure Speech Service Region string (e.g. japaneast)"/>
+    <arg name="enable_semantic_segmentation" default="true" description="Return semantically complete segments and prevents long intermediate results"/>
+
+    <node pkg="asr" exec="azure_asr" name="azure_asr">
+        <param name="asr_topic" value="$(var asr_topic)"/>
+        <param name="language_topic" value="$(var language_topic)"/>
+        <param name="azure_speech_key" value="$(var azure_speech_key)"/>
+        <param name="azure_speech_region" value="$(var azure_speech_region)"/>
+        <param name="enable_semantic_segmentation" value="$(var enable_semantic_segmentation)"/>
+    </node>
+</launch>

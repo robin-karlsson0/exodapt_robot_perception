@@ -2,6 +2,12 @@
 source ../perception_env/bin/activate
 source /opt/ros/jazzy/setup.bash
 
+# Upgrade external pip packages
+cd ../
+uv pip install --upgrade -r requirements.txt
+
+cd ros2_ws
+
 rm -rf build install log
 
 # NOTE: Need setuptools for building, but conflict with ROS 2 when running
