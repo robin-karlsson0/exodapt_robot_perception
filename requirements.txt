@@ -1,0 +1,8 @@
+catkin-pkg
+lark
+empy
+wheel
+pyyaml
+numpy
+pytest
+azure-cognitiveservices-speech
