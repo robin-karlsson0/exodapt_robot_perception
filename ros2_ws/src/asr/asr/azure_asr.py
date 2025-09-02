@@ -8,6 +8,9 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
+GREEN = '\033[92m'
+RESET = '\033[0m'
+
 
 class AzureASR(Node):
     """Azure Speech Recognition ROS 2 Node with Continuous Recognition
@@ -74,7 +77,7 @@ class AzureASR(Node):
             f'  language_topic_name: {self.language_topic_name}\n'
             f'  azure_speech_key: {self.azure_speech_key[:8]}...\n'
             f'  azure_speech_region: {self.azure_speech_region}\n'
-            f'  enable_semantic_segmentation: {self.enable_semantic_segmentation}'
+            f'  enable_semantic_segmentation: {self.enable_semantic_segmentation}'  # noqa
         )
 
     def _initialize_speech_recognition(self):
@@ -124,7 +127,7 @@ class AzureASR(Node):
                 if text:  # Only process non-empty text
                     # Thread-safe message queuing
                     self._message_queue.put(text)
-                    self.get_logger().info(f'Recognized: {text}')
+                    self.get_logger().info(f'{GREEN}Recognized: {text}{RESET}')
             elif evt.result.reason == speechsdk.ResultReason.NoMatch:
                 self.get_logger().debug('No speech could be recognized')
 
