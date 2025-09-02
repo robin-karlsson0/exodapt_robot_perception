@@ -6,7 +6,7 @@
     <arg name="azure_speech_region" default="" description="Azure Speech Service Region string (e.g. japaneast)"/>
     <arg name="enable_semantic_segmentation" default="true" description="Return semantically complete segments and prevents long intermediate results"/>
 
-    <node pkg="asr" exec="azure_asr" name="azure_asr">
+    <node pkg="asr" exec="azure_asr" name="azure_asr" output="screen" emulate_tty="true">
         <param name="asr_topic" value="$(var asr_topic)"/>
         <param name="language_topic" value="$(var language_topic)"/>
         <param name="azure_speech_key" value="$(var azure_speech_key)"/>
