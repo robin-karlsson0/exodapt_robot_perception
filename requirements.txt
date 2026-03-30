@@ -6,3 +6,4 @@ pyyaml
 numpy
 pytest
 azure-cognitiveservices-speech
+requests

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="asr_topic" default="/asr" description="Name of the ASR topic where recognized (and translated) speech will be published"/>
+    <arg name="language_topic" default="/language" description="Name of the language topic (declared for compatibility, not published)"/>
+    <arg name="azure_speech_key" default="" description="Azure Speech Service Key"/>
+    <arg name="azure_speech_region" default="" description="Azure Speech Service Region string (e.g. japaneast)"/>
+    <arg name="enable_semantic_segmentation" default="true" description="Return semantically complete segments and prevents long intermediate results"/>
+    <arg name="languages" default="['en-US', 'ja-JP']" description="List of locale codes for automatic language detection (e.g. [&quot;en-US&quot;,&quot;ja-JP&quot;])"/>
+    <arg name="azure_translate_key" default="" description="Azure Translator Service Key (required for non-English language translation)"/>
+    <arg name="azure_translate_region" default="" description="Azure Translator Service Region string (e.g. japaneast)"/>
+    <arg name="translate_to_eng" default="false" description="Whether to translate non-English recognized speech to English"/>
+
+    <node pkg="asr" exec="multi_azure_asr" name="multi_azure_asr" output="screen" emulate_tty="true">
+        <param name="asr_topic" value="$(var asr_topic)"/>
+        <param name="language_topic" value="$(var language_topic)"/>
+        <param name="azure_speech_key" value="$(var azure_speech_key)"/>
+        <param name="azure_speech_region" value="$(var azure_speech_region)"/>
+        <param name="enable_semantic_segmentation" value="$(var enable_semantic_segmentation)"/>
+        <param name="languages" value="$(var languages)"/>
+        <param name="azure_translate_key" value="$(var azure_translate_key)"/>
+        <param name="azure_translate_region" value="$(var azure_translate_region)"/>
+        <param name="translate_to_eng" value="$(var translate_to_eng)"/>
+    </node>
+</launch>
